@@ -1,3 +1,12 @@
+'use strict';
+
+//creating a new object
+const scorers = {
+	Gnarby: 1,
+	Hummels: 1,
+	Lewandowski: 2
+};
+
 const game = {
 	team1: 'Bayern Munich',
 	team2: 'Borrussia Dortmund',
@@ -20,6 +29,7 @@ const game = {
 	score: '4:0',
 	scored: [ 'Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels' ],
 	date: 'Nov 9th, 2037',
+	scorers,
 	odds: {
 		team1: 1.33,
 		x: 3.25,
@@ -27,6 +37,7 @@ const game = {
 	}
 };
 
+console.log(game);
 //creating a player array for each team
 const [ players1, players2 ] = game.players;
 console.log(players1, players2);
@@ -62,3 +73,25 @@ printGoals(...game.scored);
 //team with lower odd = winner
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
+
+//Coding Challenge #2
+for (const player of game.scored.entries()) console.log(`Goal ${player[0] + 1}: ${player[1]} `);
+
+//calculating the average of the odds using for of loop
+let average = 0;
+const values = Object.values(game.odds);
+console.log(values);
+
+for (const x of values) {
+	average += x;
+
+	console.log(x);
+}
+console.log(average / values.length);
+
+//printing out the odds in a formatted way
+for (const [ team, odd ] of Object.entries(game.odds)) {
+	const teamStr = team == 'x' ? 'draw' : `victory ${game[team]}`;
+	//console.log(team, odd);
+	console.log(`Odd of ${teamStr} ${odd}`);
+}
